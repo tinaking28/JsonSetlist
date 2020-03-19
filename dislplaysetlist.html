@@ -1,0 +1,134 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+
+</head>
+
+<body>
+
+<div class="wrapper">
+  <script>
+var songs = [
+    {
+      "title" : "Say So",
+      "artists" : ["Doja Cat"],
+      "genres" : ["R&B"],
+      "releaseYear" : 2019
+    },
+    {
+      "title" : "Pretty Thoughts",
+      "artists" : ["Alina Baraz", "Galimatias"],
+      "genres" : ["Electronic"],
+      "releaseYear" : 2015
+    },
+    {
+      "title" : "Intentions",
+      "artists" : ["Justin Bieber"],
+      "genres" : ["Pop"],
+      "releaseYear" : 2020
+    },
+    {
+      "title" : "SUGAR",
+      "artists" : ["BROCKHAMPTON"],
+      "genres" : ["Hip-Hop", "Rap"],
+      "releaseYear" : 2019
+    },
+    {
+      "title" : "Dance Again",
+      "artists" : ["Selena Gomez"],
+      "genres" : ["Pop"],
+      "releaseYear" : 2020
+    },
+    {
+      "title" : "HEAVY HITTER",
+      "artists" : ["Jack Harlow"],
+      "genres" : ["Hip-Hop", "Rap"],
+      "releaseYear" : 2019
+    },
+    {
+      "title" : "No Sweat",
+      "artists" : ["Jessie Reyez"],
+      "genres" : ["R&B"],
+      "releaseYear" : 2020
+    },
+    {
+      "title" : "Turn on me",
+      "artists" : ["The Shins"],
+      "genres" : ["Alternative"],
+      "releaseYear" : 2007
+    },
+    {
+      "title" : "How Do You Sleep?",
+      "artists" : ["Sam Smith"],
+      "genres" : ["Pop"],
+      "releaseYear" : 2019
+    },
+    {
+      "title" : "Crowded Room",
+      "artists" : ["Selena Gomez", "6LACK"],
+      "genres" : ["Pop", "R&B"],
+      "releaseYear" : 2020
+    }]
+$(function() {
+   
+    $.each(songs, function(i, f) {
+        var tblRow = "<tr>" + "<td>" + f.title + "</td>" +
+         "<td>" + f.artists + "</td>" + "<td>" + f.genres + "</td>" + "<td>" + f.releaseYear + "</td>" + "</tr>"
+         $(tblRow).appendTo("#userdata tbody");
+    });
+
+  });
+  genres = ["Pop", "R&B", "Alternative", "Rap", "Hip-Hop","Electronic"];
+
+  function makeSelect(){
+    var t= "";
+    t = "<select name='genre' size='1'>";
+      $.each(genres,function(i,g){
+        t += "<option>" + g + "</option>";
+      });
+       
+    t+= "</select>"; 
+    return t;
+  }
+  document.writeln(makeSelect());
+  function updateTable(){
+    $('#userdata tbody').html("");
+    $.each(songs, function(i, f) {
+      if(f.genres.includes(genres[0])){
+        var tblRow = "<tr>" + "<td>" + f.title + "</td>" +
+          "<td>" + f.artists + "</td>" + "<td>" + f.genres + "</td>" + "<td>" + f.releaseYear + "</td>" + "</tr>"
+         $(tblRow).appendTo("#userdata tbody");
+      }
+    });
+  }
+
+  function filterTable(){  
+      chosenGenre = $('select').val();
+      genres = [chosenGenre];
+      updateTable();
+
+  }
+</script>
+<button onclick="filterTable()">Filter</button>
+
+<div class="profile">
+
+  <table id= "userdata" border="2">
+  <thead>
+            <th>Title</th>
+            <th>Artists</th>
+            <th>Genres</th>
+            <th>Year Released</th>
+        </thead>
+      <tbody>
+
+       </tbody>
+   </table>
+
+
+</div>
+</div>
+
+</body>
+</html>
